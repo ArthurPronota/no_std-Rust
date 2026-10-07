@@ -1,0 +1,21 @@
+[package]
+name = "o_072"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+features = "0.10.0"
+win32-foundation = "0.1.0"
+# cargo add windows-sys --features "Win32_Foundation,Win32_System_Threading,Win32_System_Console"
+windows-sys = { version = "0.52.0", features = ["Win32_Foundation", "Win32_System_Threading", "Win32_System_Console"] }
+
+
+[profile.release]
+opt-level = "z"     # Оптимизация по размеру
+lto = true          # Link Time Optimization
+codegen-units = 1   # Уменьшает количество единиц кодогенерации
+panic = "abort"     # Прерывание при панике
+strip = true        # Удаляет символы из бинарника
+
+[profile.dev]
+panic = "abort"     # Прерывание при панике
